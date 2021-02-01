@@ -67,11 +67,11 @@ for d in description_section:
 
 
 ####################### validate ######################
-# print(list_of_title_names)
-# print(list_of_genres)
-# print(list_of_certificates)
-# print(list_of_year)
-# print(list_of_ratings)
-# print(list_of_number_of_votes)
-# print(list_of_movie_descriptions)
-# print(list_of_stars_in_the_movie)
+print(list_of_title_names)
+print(list_of_genres)
+print(list_of_certificates)
+print(list_of_year)
+print(list_of_ratings)
+print(list_of_number_of_votes)
+print(list_of_movie_descriptions)
+print(list_of_stars_in_the_movie)
