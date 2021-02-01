@@ -25,16 +25,20 @@ for header in title_headers:
         list_of_title_names.append(link.text)
 ##################### getting year of make  #########################
     years = header.find_all('span')
-    list_of_year.append(years[1].text[1: 5])
+    # list_of_year.append(years[1].text[1: 5]) # commenting the cleaning step. This will be performed with pandas
+    # during data cleaning step later
+    list_of_year.append(years[1].text)
 ################### getting genres ######################
 genres = movies_list.find_all('span', {'class': 'genre'})
 for g in genres:
-    list_of_genres.append(g.text.strip())
+    # list_of_genres.append(g.text.strip()) # commenting the cleaning step. This will be performed with pandas
+    list_of_genres.append(g.text)
 ################### getting certificates ######################
 
 certs = movies_list.find_all('span', {'class': 'certificate'})
 for c in certs:
-    list_of_certificates.append(c.text.strip())
+    # list_of_certificates.append(c.text.strip()) # commenting the cleaning step. This will be performed with pandas
+    list_of_certificates.append(c.text)
 
 ####################### validate ######################
 print(list_of_title_names)
