@@ -63,7 +63,7 @@ for d in description_section:
     desc_text = all_p_sections[1].text
     list_of_movie_descriptions.append(desc_text)
 
-################### getting starts in the movie ######################
+################### getting stars in the movie ######################
 
 
 ####################### validate ######################
