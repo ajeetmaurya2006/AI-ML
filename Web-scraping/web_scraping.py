@@ -10,10 +10,9 @@ URL_HOME_PAGE = 'https://www.imdb.com/search/title/?genres=action&explore=title_
 # Action Movies and TV Shows on IMDB
 # total 314,690 results, 50 per page, total pages 6292,
 # for the iteration n*50+1, n = 1 to 6191
-
 # other_pages = f'https://www.imdb.com/search/title/?genres=action&start={n * 50 + 1}&explore=title_type,genres&ref_=adv_nxt'
 
-total_number_of_pages = 4
+total_number_of_pages = 6191
 list_of_title_names = []
 list_of_genres = []
 list_of_certificates = []
@@ -64,7 +63,8 @@ for n in range(0, total_number_of_pages):
     ################### getting ratings ######################
     ratings_section = movies_list.find_all('div', {'class': 'ratings-bar'})
     for r in ratings_section:
-        list_of_ratings.append(r.find('strong').text)
+        if r.find('strong'):
+            list_of_ratings.append(r.find('strong').text)  ### AttributeError: 'NoneType' object has no attribute 'text'
 
     ################### getting number of votes ######################
     num_votes_section = movies_list.find_all('span', {'name': 'nv'})
@@ -75,8 +75,9 @@ for n in range(0, total_number_of_pages):
     description_section = movies_list.find_all('div', {'class': 'lister-item-content'})
     for d in description_section:
         all_p_sections = d.find_all('p', {'class': 'text-muted'})
-        desc_text = all_p_sections[1].text
-        list_of_movie_descriptions.append(desc_text)
+        if all_p_sections[1]:
+            desc_text = all_p_sections[1].text
+            list_of_movie_descriptions.append(desc_text)
 
     ################### getting stars in the movie ######################
 
@@ -103,7 +104,7 @@ movies_dict = {'Title' : pd.Series(list_of_title_names),
                'Description' : pd.Series(list_of_movie_descriptions),
                'Stars' : pd.Series(list_of_stars_in_the_movie)}
 df = pd.DataFrame(movies_dict)
-print(df)
+# print(df)
 
 ####################  converting the df into csv file and saving it in the DATA folder #####################
 
@@ -113,3 +114,13 @@ movies_action = df.to_csv('../Data/movies_action.csv')
 
 con = sq.create_engine("mysql+pymysql://root:password@localhost/Movies_IMDB")
 df.to_sql('Movies_Action', con)
+
+
+# list_of_title_names : 309550
+# list_of_genres : 309550
+# list_of_certificates :270330
+# list_of_year : 309550
+# list_of_ratings : 278999
+# list_of_number_of_votes : 335326
+# list_of_movie_descriptions : 309550
+# list_of_stars_in_the_movie : 0
