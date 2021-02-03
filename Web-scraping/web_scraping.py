@@ -4,7 +4,7 @@ import time
 import pandas as pd
 import numpy as np
 import sqlalchemy as sq
-# import PyMySQL
+
 
 URL_HOME_PAGE = 'https://www.imdb.com/search/title/?genres=action&explore=title_type,genres&view=advanced'
 # Action Movies and TV Shows on IMDB
@@ -104,6 +104,10 @@ movies_dict = {'Title' : pd.Series(list_of_title_names),
                'Stars' : pd.Series(list_of_stars_in_the_movie)}
 df = pd.DataFrame(movies_dict)
 print(df)
+
+####################  converting the df into csv file and saving it in the DATA folder #####################
+
+movies_action = df.to_csv('../Data/movies_action.csv')
 
 #################### Inserting the dataframe data into mysql table ##############
 
